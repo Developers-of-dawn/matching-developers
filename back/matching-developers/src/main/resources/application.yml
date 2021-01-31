@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/matching?serverTimezone=Asia/Seoul
+    username: sally
+    password: 1q2w3e4r
+    driver-class-name: com.mysql.cj.jdbc.Driver
