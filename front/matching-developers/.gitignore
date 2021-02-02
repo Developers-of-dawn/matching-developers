@@ -5,7 +5,8 @@
 /.pnp
 .pnp.js
 .env
-
+AuthFormRegister.css
+AuthFormRegister.js
 # testing
 /coverage
 
