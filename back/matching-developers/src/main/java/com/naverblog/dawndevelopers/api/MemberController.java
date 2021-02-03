@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.naverblog.dawndevelopers.api.dto.MemberEditRequestDto;
 import com.naverblog.dawndevelopers.api.dto.MemberJoinRequestDto;
+import com.naverblog.dawndevelopers.api.dto.MemberLoginRequestDto;
+import com.naverblog.dawndevelopers.api.dto.ResponseLogin;
 import com.naverblog.dawndevelopers.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,11 @@ public class MemberController {
     @PatchMapping("/edit/{id}") // TODO : Browser 에서 PatchMapping 고려
     public ResponseEntity<?> edit(@PathVariable("id") Long id, @RequestBody MemberEditRequestDto memberEditRequestDto) {
         return ResponseEntity.ok(memberService.editMember(id, memberEditRequestDto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody MemberLoginRequestDto memberLoginRequestDto){
+        return ResponseLogin.getLoginResponse( memberService.login(memberLoginRequestDto));
     }
 
 }

@@ -1,11 +1,8 @@
 package com.naverblog.dawndevelopers.api.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.naverblog.dawndevelopers.domain.member.Member;
-import com.naverblog.dawndevelopers.domain.stack.MemberStack;
-import com.naverblog.dawndevelopers.domain.stack.Stack;
 import com.naverblog.dawndevelopers.util.Encrypt;
 
 import lombok.AllArgsConstructor;
