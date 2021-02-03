@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.naverblog.dawndevelopers.api.dto.MemberEditRequestDto;
 import com.naverblog.dawndevelopers.api.dto.MemberJoinRequestDto;
 import com.naverblog.dawndevelopers.api.dto.MemberResponseDto;
 import com.naverblog.dawndevelopers.domain.member.Member;
@@ -13,6 +14,7 @@ import com.naverblog.dawndevelopers.domain.stack.Stack;
 import com.naverblog.dawndevelopers.repository.MemberRepository;
 import com.naverblog.dawndevelopers.repository.MemberStackRepository;
 import com.naverblog.dawndevelopers.repository.StackRepository;
+import com.naverblog.dawndevelopers.util.Encrypt;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,4 +43,15 @@ public class MemberService {
         Optional<Member> findMember = memberRepository.findById(id);
         return MemberResponseDto.of(findMember);
     }
+
+    public MemberResponseDto editMember(Long id, MemberEditRequestDto memberEditRequestDto) {
+        String password = memberEditRequestDto.getPassword();
+        String encrypted = Encrypt.from(password);
+        String nickname = memberEditRequestDto.getNickname();
+        String address = memberEditRequestDto.getAddress();
+        String job = memberEditRequestDto.getJob();
+        memberRepository.update(id,encrypted,nickname,job,address);
+        return new MemberResponseDto(nickname);
+    }
+
 }
