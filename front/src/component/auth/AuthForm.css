@@ -1,0 +1,15 @@
+label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+#Checkbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+Footer {
+  margin-top: 2rem;
+  text-align: right;
+}
