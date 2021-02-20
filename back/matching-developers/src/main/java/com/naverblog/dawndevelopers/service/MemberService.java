@@ -13,7 +13,7 @@ import com.naverblog.dawndevelopers.api.dto.MemberResponseDto;
 import com.naverblog.dawndevelopers.api.dto.ResponseLogin;
 import com.naverblog.dawndevelopers.domain.member.Member;
 import com.naverblog.dawndevelopers.domain.stack.MemberStack;
-import com.naverblog.dawndevelopers.domain.stack.Stack;
+import com.naverblog.dawndevelopers.domain.stack.TechStack;
 import com.naverblog.dawndevelopers.repository.MemberRepository;
 import com.naverblog.dawndevelopers.repository.MemberStackRepository;
 import com.naverblog.dawndevelopers.repository.StackRepository;
@@ -23,9 +23,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Transactional(readOnly = true)
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
     private final StackRepository stackRepository;
     private final MemberRepository memberRepository;
@@ -37,9 +37,9 @@ public class MemberService {
 
         List<String> stackList = memberJoinRequestDto.getStacks();
         for (String stackName : stackList) {
-            Stack stack = stackRepository.findByName(stackName);
+            TechStack techStack = stackRepository.findByName(stackName);
             MemberStack memberStack = new MemberStack();
-            memberStack.setMemberStack(member, stack);
+            memberStack.setMemberStack(member, techStack);
             memberStackRepository.save(memberStack);
         }
         return saveMember.getId();
@@ -50,6 +50,7 @@ public class MemberService {
         return MemberResponseDto.of(findMember);
     }
 
+    @Transactional
     public MemberResponseDto editMember(Long id, MemberEditRequestDto memberEditRequestDto) {
         String password = memberEditRequestDto.getPassword();
         String encrypted = Encrypt.from(password);
@@ -60,6 +61,7 @@ public class MemberService {
         return new MemberResponseDto(nickname);
     }
 
+    @Transactional
     public ResponseLogin login(MemberLoginRequestDto memberLoginRequestDto) {
         final String userId = memberLoginRequestDto.getUserid();
         final String encrypt = Encrypt.from(memberLoginRequestDto.getPassword());
@@ -70,4 +72,9 @@ public class MemberService {
         return count > 0 ? ResponseLogin.SUCCESS : ResponseLogin.FAIL;
     }
 
+    public List<Member> findAll() {
+        List<Member> all = memberRepository.findAll();
+        log.info("찾은 member의 개수 ={}", all.size());
+        return all;
+    }
 }
