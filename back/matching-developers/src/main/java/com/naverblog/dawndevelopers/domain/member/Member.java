@@ -26,7 +26,7 @@ public class Member extends BaseEntity {
     @Column(name = "member_id")
     private Long id;
 
-    private String userid;
+    private String userId;
     private String password;
     private String email;
     private String nickname;
@@ -38,8 +38,8 @@ public class Member extends BaseEntity {
     private Set<MemberStack> stacks = new HashSet<>();
 
     @Builder
-    public Member(String userid, String password, String email, String nickname, String phone, String job, String address) {
-        this.userid = userid;
+    public Member(String userId, String password, String email, String nickname, String phone, String job, String address) {
+        this.userId = userId;
         this.password = password;
         this.email = email;
         this.nickname = nickname;

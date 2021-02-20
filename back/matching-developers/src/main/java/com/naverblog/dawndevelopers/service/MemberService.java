@@ -63,10 +63,10 @@ public class MemberService {
 
     @Transactional
     public ResponseLogin login(MemberLoginRequestDto memberLoginRequestDto) {
-        final String userId = memberLoginRequestDto.getUserid();
+        final String userId = memberLoginRequestDto.getUserId();
         final String encrypt = Encrypt.from(memberLoginRequestDto.getPassword());
         log.info("current userId = {}, password = {}", userId, encrypt);
-        Optional<Member> findMember = memberRepository.findByUserid(userId);
+        Optional<Member> findMember = memberRepository.findByUserId(userId);
         log.info("Existence = {}", findMember.isPresent());
         long count = findMember.filter(member -> member.getPassword().equals(encrypt)).stream().count();
         return count > 0 ? ResponseLogin.SUCCESS : ResponseLogin.FAIL;

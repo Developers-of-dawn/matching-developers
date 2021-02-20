@@ -13,8 +13,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class MemberJoinRequestDto {
-    private String username;
-    private String userid;
+    private String userId;
     private String password;
     private String email;
     private String nickname;
@@ -28,8 +27,7 @@ public class MemberJoinRequestDto {
         final String encryptPassword = Encrypt.from(rawPassword);
 
         return Member.builder()
-                     .userid(memberJoinRequestDto.getUserid())
-                     .username(memberJoinRequestDto.getUsername())
+                     .userId(memberJoinRequestDto.getUserId())
                      .password(encryptPassword)
                      .email(memberJoinRequestDto.getEmail())
                      .nickname(memberJoinRequestDto.getNickname())

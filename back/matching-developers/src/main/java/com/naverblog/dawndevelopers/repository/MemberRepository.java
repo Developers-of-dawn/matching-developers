@@ -15,5 +15,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("update Member m set m.password =:encrypted, m.nickname =:nickname, m.job =:job , m.address =:address where m.id =:id")
     void update(Long id, String encrypted, String nickname, String job, String address);
 
-    Optional<Member> findByUserid(String userId);
+    Optional<Member> findByUserId(String userId);
 }
