@@ -31,6 +31,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final MemberStackRepository memberStackRepository;
 
+    @Transactional
     public Long joinMembers(MemberJoinRequestDto memberJoinRequestDto) {
         Member member = MemberJoinRequestDto.of(memberJoinRequestDto);
         Member saveMember = memberRepository.save(member);
