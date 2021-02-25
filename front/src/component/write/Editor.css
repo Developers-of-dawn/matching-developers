@@ -1,0 +1,16 @@
+input,
+textarea {
+  display: block;
+  width: 700px;
+  margin-top: 30px;
+  font-size: 40px;
+  text-align: center;
+}
+input {
+  height: 60px;
+  line-height: 60px;
+}
+textarea {
+  height: 600px;
+  line-height: 600px;
+}
